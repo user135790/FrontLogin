@@ -1,1 +1,25 @@
-<p>login works!</p>
+<section>
+
+    <form [formGroup]="login" (ngSubmit)="onSubmitLogin()">
+        <label for="username">Ingresa tu nombre de usuario</label>
+        <input type="text" formControlName="username">
+        
+        <label for="password">Ingresa tu contraseña</label>
+        <input type="password" formControlName="password">
+
+        @if (login.invalid && (login.dirty || login.touched)) {
+            @if (login.hasError("required","username")) {
+                <div class="alert alert-danger">El usuario es obligatorio</div>
+            }
+            @if (login.hasError("required","password")) {
+                <div class="alert alert-danger">La contraseña es obligatoria</div>
+            }
+            @if (login.hasError("minlength","password")) {
+                <div class="alert alert-danger">La contraseña debe tener al menos 7 caracteres</div>
+            }
+        }
+        <button type="submit">Ingresar</button>
+    </form>
+
+    <p>{{login.status}}</p>
+</section>
