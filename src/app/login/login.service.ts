@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  private apiUrl = "http://yonoseque.com"
+  private apiUrl = "http://localhost:8080"
   constructor(private http:HttpClient) { }
 
   sendLogin(data:any): Observable<any>{

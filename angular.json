@@ -56,13 +56,17 @@
           "defaultConfiguration": "production"
         },
         "serve": {
+          "options": {
+            "proxyConfig": "src/proxy.conf.json"
+          },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
               "buildTarget": "FrontLogin:build:production"
             },
             "development": {
-              "buildTarget": "FrontLogin:build:development"
+              "buildTarget": "FrontLogin:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
