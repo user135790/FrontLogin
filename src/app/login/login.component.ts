@@ -15,8 +15,8 @@ export class LoginComponent {
   constructor (private service:LoginService){}
 
   login = new FormGroup({  
-    username: new FormControl('',[Validators.required]),
-    password: new FormControl('',[Validators.required, Validators.minLength(7)])
+    nombre: new FormControl('',[Validators.required]),
+    contrasena: new FormControl('',[Validators.required, Validators.minLength(7)])
   });
 
 
