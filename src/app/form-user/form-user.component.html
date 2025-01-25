@@ -1,0 +1,31 @@
+<section>
+
+    <form [formGroup]="user" (ngSubmit)="onSubmitUser()">
+        <label for="nombre">Ingresa tu nombre de usuario</label>
+        <input type="text" formControlName="nombre">
+        
+        <label for="contrasena">Ingresa tu contraseña</label>
+        <input type="password" formControlName="contrasena">
+
+        <label for="correoElectronico">Ingresa tu email</label>
+        <input type="email" formControlName="correoElectronico">
+
+        <label for="perfil">Ingresa tu perfil </label>
+        <input type="text" formControlName="perfil">
+
+        @if (user.invalid && (user.dirty || user.touched)) {
+            @if (user.hasError("required","nombre,contrasena,perfil,correoElectronico")) {
+                <div class="alert alert-danger">Todos los campos son obligatorios</div>
+            }
+            @if (user.hasError("email","correoElectronico")) {
+                <div class="alert alert-danger">El campo email debe contener una direccion válida</div>
+            }
+            @if (user.hasError("minlength","contrasena")) {
+                <div class="alert alert-danger">La contraseña debe tener al menos 7 caracteres</div>
+            }
+        }
+        <button type="submit">Ingresar</button>
+    </form>
+
+    <p>{{user.status}}</p>
+</section>

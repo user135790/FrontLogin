@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ReactiveFormsModule, Validators} from '@angular/forms';
 import {FormControl, FormGroup} from '@angular/forms';
-import { LoginService } from './login.service';
+import { UserService } from '../user/user-service.service';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent {
 
-  constructor (private service:LoginService){}
+  constructor (private service:UserService){}
 
   login = new FormGroup({  
     nombre: new FormControl('',[Validators.required]),
