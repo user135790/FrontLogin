@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserInterface } from './user-interface';
+import { CompleteUserInterface, UserInterface } from './user-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,10 @@ export class UserService {
   }
 
   createUser(user: UserInterface): Observable<any>{
+    return this.http.post(this.urlApi+"create", user, {withCredentials:true})
+  }
+
+  updateUser(user: CompleteUserInterface): Observable<any>{
     return this.http.post(this.urlApi+"create", user, {withCredentials:true})
   }
 

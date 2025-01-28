@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../user/user-service.service';
-import { UserInterface } from '../user/user-interface';
+import { UserInterface, CompleteUserInterface } from '../user/user-interface';
+import { User } from '../user/user';
 
 
 @Component({
@@ -14,16 +15,37 @@ export class FormUserComponent {
 
   constructor (private service:UserService){}
 
-  @Input() usuario:UserInterface | undefined = undefined;
+  @Input() nombreUsuario:string = "";
+
+  idUsuario: number = -1;
+
+  usuario: CompleteUserInterface | undefined = undefined
 
   user = new FormGroup({  
-    nombre: new FormControl(this.usuario?.nombre ?? '',[Validators.required]),
-    correoElectronico: new FormControl(this.usuario?.correoElectronico ?? '',[Validators.email, Validators.required]),
-    perfil: new FormControl(this.usuario?.perfil ?? '',[Validators.required]),
-    contrasena: new FormControl(this.usuario?.contrasena ?? '',[Validators.required, Validators.minLength(7)])
+    nombre: new FormControl('',[Validators.required]),
+    correoElectronico: new FormControl('',[Validators.email, Validators.required]),
+    perfil: new FormControl('',[Validators.required]),
+    contrasena: new FormControl('',[Validators.required, Validators.minLength(7)])
   });
 
+  ngOnInit(){
+    if (this.nombreUsuario != ""){
+      this.service.findUser(this.nombreUsuario).subscribe((data)=>{
+        this.idUsuario = data.id
+        delete data.id
+        this.user.setValue(data as UserInterface)
+      })
+    }
+  }
+
   onSubmitUser() {
-    this.service.createUser(this.user.value as UserInterface).subscribe()
+    if(this.nombreUsuario != ""){
+      let nuevoUsuario: Partial<CompleteUserInterface> = this.user.value as CompleteUserInterface
+      nuevoUsuario.id = this.idUsuario
+      this.service.updateUser(nuevoUsuario as CompleteUserInterface).subscribe()
+    }else{
+      this.service.createUser(this.user.value as UserInterface).subscribe()
+    }
+    
   }
 }
