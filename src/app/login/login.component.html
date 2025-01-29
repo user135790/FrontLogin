@@ -1,24 +1,46 @@
 <section>
 
     <form [formGroup]="login" (ngSubmit)="onSubmitLogin()">
-        <label for="nombre">Ingresa tu nombre de usuario</label>
-        <input type="text" formControlName="nombre">
-        
-        <label for="contrasena">Ingresa tu contraseña</label>
-        <input type="password" formControlName="contrasena">
 
-        @if (login.invalid && (login.dirty || login.touched)) {
-            @if (login.hasError("required","nombre")) {
-                <div class="alert alert-danger">El usuario es obligatorio</div>
+    <div class="">
+            <p-inputgroup>
+                    <p-floatLabel>
+                        <p-inputgroup-addon>
+                            <i class="pi pi-user"></i>
+                        </p-inputgroup-addon>
+                        <label for="nombre">Nombre de usuario</label>
+                        <input pInputText aria-describedby="username-help" type="text" formControlName="nombre">
+                        <small id="username-help">Ingresa tu nombre de usuario</small>
+                    </p-floatLabel>
+                
+
+                <p-floatLabel>
+                    <p-inputgroup-addon>
+                        ***
+                    </p-inputgroup-addon>
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" aria-describedby="password-help" formControlName="contrasena">
+                    <small id="password-help">Ingresa tu contraseña</small>  
+                </p-floatLabel>
+            </p-inputgroup>
+            
+
+            @if (login.invalid && (login.dirty || login.touched)) {
+                @if (login.hasError("required","nombre")) {
+                    <div class="alert alert-danger">El usuario es obligatorio</div>
+                }
+                @if (login.hasError("required","contrasena")) {
+                    <div class="alert alert-danger">La contraseña es obligatoria</div>
+                }
+                @if (login.hasError("minlength","contrasena")) {
+                    <div class="alert alert-danger">La contraseña debe tener al menos 7 caracteres</div>
+                }
             }
-            @if (login.hasError("required","contrasena")) {
-                <div class="alert alert-danger">La contraseña es obligatoria</div>
-            }
-            @if (login.hasError("minlength","contrasena")) {
-                <div class="alert alert-danger">La contraseña debe tener al menos 7 caracteres</div>
-            }
-        }
-        <button type="submit">Ingresar</button>
+        </div>
+            <button pButton type="submit">
+                <span pButtonLabel>Enviar</span>
+                <i class="pi pi-arrow-right"></i>
+            </button>
     </form>
 
     <p>{{login.status}}</p>

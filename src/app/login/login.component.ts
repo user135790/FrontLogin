@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import {ReactiveFormsModule, Validators} from '@angular/forms';
 import {FormControl, FormGroup} from '@angular/forms';
 import { UserService } from '../user/user-service.service';
-
+import { CustomPrimengModule } from '../custom-primeng/custom-primeng.module';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CustomPrimengModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
