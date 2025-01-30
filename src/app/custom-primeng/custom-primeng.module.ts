@@ -5,6 +5,9 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { providePrimeNG} from 'primeng/config';
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { MessageModule } from 'primeng/message';
+import {InputText} from 'primeng/inputtext'
 
 @NgModule({
   declarations: [],
@@ -13,13 +16,19 @@ import { ButtonModule } from 'primeng/button';
     FloatLabelModule,
     InputGroupModule,
     InputGroupAddonModule,
-    ButtonModule
+    ButtonModule,
+    CardModule,
+    MessageModule,
+    InputText
   ],
   exports:[
     FloatLabelModule,
     InputGroupModule,
     InputGroupAddonModule,
-    ButtonModule
+    ButtonModule,
+    CardModule,
+    MessageModule,
+    InputText
   ]
 })
 export class CustomPrimengModule { }

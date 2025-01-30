@@ -1,47 +1,52 @@
 <section>
 
-    <form [formGroup]="login" (ngSubmit)="onSubmitLogin()">
-
-    <div class="">
-            <p-inputgroup>
-                    <p-floatLabel>
+    <div class="form-login">
+        <p-card header="Login">
+            <form [formGroup]="login" (ngSubmit)="onSubmitLogin()">
+                @if (login.invalid && (login.dirty || login.touched)) {
+                    <p-message severity="error" icon="pi pi-times-circle">Validación fallida</p-message>
+                }
+                <div class="input-login">
+                    <p-inputgroup>
+                            <p-inputgroup-addon>
+                                <i class="pi pi-user"></i>
+                            </p-inputgroup-addon>
+                            <p-floatLabel>
+                                <label for="nombre">Nombre de usuario</label>
+                                <input pInputText variant="filled" id="nombre" type="text" formControlName="nombre">
+                            </p-floatLabel>
+                            @if (login.invalid && (login.dirty || login.touched)) {
+                                @if (login.hasError("required","nombre")) {
+                                    <p-message severity="error" variant="simple" size="small">El usuario es obligatorio</p-message>
+                                }
+                            }
+                    </p-inputgroup>        
+                        
+                    <p-inputgroup>
                         <p-inputgroup-addon>
-                            <i class="pi pi-user"></i>
+                            ***
                         </p-inputgroup-addon>
-                        <label for="nombre">Nombre de usuario</label>
-                        <input pInputText aria-describedby="username-help" type="text" formControlName="nombre">
-                        <small id="username-help">Ingresa tu nombre de usuario</small>
-                    </p-floatLabel>
-                
-
-                <p-floatLabel>
-                    <p-inputgroup-addon>
-                        ***
-                    </p-inputgroup-addon>
-                    <label for="contrasena">Contraseña</label>
-                    <input type="password" aria-describedby="password-help" formControlName="contrasena">
-                    <small id="password-help">Ingresa tu contraseña</small>  
-                </p-floatLabel>
-            </p-inputgroup>
-            
-
-            @if (login.invalid && (login.dirty || login.touched)) {
-                @if (login.hasError("required","nombre")) {
-                    <div class="alert alert-danger">El usuario es obligatorio</div>
-                }
-                @if (login.hasError("required","contrasena")) {
-                    <div class="alert alert-danger">La contraseña es obligatoria</div>
-                }
-                @if (login.hasError("minlength","contrasena")) {
-                    <div class="alert alert-danger">La contraseña debe tener al menos 7 caracteres</div>
-                }
-            }
-        </div>
-            <button pButton type="submit">
-                <span pButtonLabel>Enviar</span>
-                <i class="pi pi-arrow-right"></i>
-            </button>
-    </form>
-
-    <p>{{login.status}}</p>
+                        <p-floatLabel>
+                            <label for="contrasena">Contraseña</label>
+                            <input type="password" pInputText variant="filled" formControlName="contrasena">
+                        </p-floatLabel>
+                        @if (login.invalid && (login.dirty || login.touched)) {
+                            @if (login.hasError("required","contrasena")) {
+                                <p-message severity="error" variant="simple" size="small">La contraseña es obligatoria</p-message>
+                            }
+                            @if (login.hasError("minlength","contrasena")) {
+                                <p-message severity="error" variant="simple" size="small">La contraseña debe tener al menos 7 caracteres</p-message>
+                            }
+                        }
+                    </p-inputgroup>        
+                        
+                    
+                    <button pButton type="submit">
+                        <span pButtonLabel>Enviar</span>
+                        <i class="pi pi-arrow-right"></i>
+                    </button>
+                </div>
+            </form>
+        </p-card>        
+    </div>
 </section>
