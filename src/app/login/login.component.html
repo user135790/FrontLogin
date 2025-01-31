@@ -2,46 +2,65 @@
 
     <div class="form-login">
         <p-card header="Login">
+            <ng-template #header>
+                <svg width="80px" height="80px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                    <g id="SVGRepo_iconCarrier"> <circle cx="512" cy="512" r="512" [style]="{fill:propiedadesCss.colorIcono}"/> 
+                    <path d="m458.15 617.7 18.8-107.3a56.94 56.94 0 0 1 35.2-101.9V289.4h-145.2a56.33 56.33 0 0 0-56.3 56.3v275.8a33.94 33.94 0 0 0 3.4 15c12.2 24.6 60.2 103.7 197.9 164.5V622.1a313.29 313.29 0 0 1-53.8-4.4zM656.85 289h-144.9v119.1a56.86 56.86 0 0 1 35.7 101.4l18.8 107.8A320.58 320.58 0 0 1 512 622v178.6c137.5-60.5 185.7-139.9 197.9-164.5a33.94 33.94 0 0 0 3.4-15V345.5a56 56 0 0 0-16.4-40 56.76 56.76 0 0 0-40.05-16.5z" style="fill:#fff"/> </g>
+                </svg>
+            </ng-template>
             <form [formGroup]="login" (ngSubmit)="onSubmitLogin()">
-                @if (login.invalid && (login.dirty || login.touched)) {
-                    <p-message severity="error" icon="pi pi-times-circle">Validación fallida</p-message>
+                @if ((nombre.invalid && nombre.touched) || (contrasena.touched && contrasena.invalid)) {
+                    <p-message severity="error" size="small" icon="pi pi-times-circle">Validación fallida</p-message>
                 }
                 <div class="input-login">
                     <p-inputgroup>
                             <p-inputgroup-addon>
                                 <i class="pi pi-user"></i>
                             </p-inputgroup-addon>
-                            <p-floatLabel>
-                                <label for="nombre">Nombre de usuario</label>
+                            <p-floatLabel variant="on">
                                 <input pInputText variant="filled" id="nombre" type="text" formControlName="nombre">
+                                <label for="nombre">Nombre de usuario</label>
                             </p-floatLabel>
-                            @if (login.invalid && (login.dirty || login.touched)) {
-                                @if (login.hasError("required","nombre")) {
-                                    <p-message severity="error" variant="simple" size="small">El usuario es obligatorio</p-message>
-                                }
-                            }
                     </p-inputgroup>        
+                    @if (nombre.invalid && (nombre.touched || nombre.dirty)) {
+                        @if (login.hasError("required","nombre")) {
+                            <div class="mensajes-error">
+                                <p-message severity="error" variant="simple" size="small">El usuario es obligatorio</p-message>
+                            </div>
+                            
+                        }
+                    }
                         
                     <p-inputgroup>
                         <p-inputgroup-addon>
                             ***
                         </p-inputgroup-addon>
-                        <p-floatLabel>
-                            <label for="contrasena">Contraseña</label>
+                        <p-floatLabel variant="on">
                             <input type="password" pInputText variant="filled" formControlName="contrasena">
+                            <label for="contrasena">Contraseña</label>
                         </p-floatLabel>
-                        @if (login.invalid && (login.dirty || login.touched)) {
-                            @if (login.hasError("required","contrasena")) {
+                    </p-inputgroup>    
+                    @if (contrasena.invalid && (contrasena.touched || contrasena.dirty)) {
+                        @if (login.hasError("required","contrasena")) {
+                            <div class="mensajes-error">
                                 <p-message severity="error" variant="simple" size="small">La contraseña es obligatoria</p-message>
-                            }
-                            @if (login.hasError("minlength","contrasena")) {
-                                <p-message severity="error" variant="simple" size="small">La contraseña debe tener al menos 7 caracteres</p-message>
-                            }
+                            </div>
                         }
-                    </p-inputgroup>        
+                        @if (login.hasError("minlength","contrasena")) {
+                            <div class="mensajes-error">
+                                <p-message severity="error" variant="simple" size="small">La contraseña debe tener al menos 7 caracteres</p-message>
+                            </div>
+                        }
+                    }    
                         
                     
-                    <button pButton type="submit">
+                    <button pButton [disabled]=propiedadesCss.disabled 
+                    [style]="{'--p-button-primary-background':propiedadesCss.colorIcono,
+                        '--p-button-primary-active-background':propiedadesCss.colorIcono, 
+                        '--p-button-primary-hover-background': propiedadesCss.colorIcono
+                    }" size="small" type="submit">
                         <span pButtonLabel>Enviar</span>
                         <i class="pi pi-arrow-right"></i>
                     </button>
