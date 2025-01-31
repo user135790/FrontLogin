@@ -7,7 +7,8 @@ import { providePrimeNG} from 'primeng/config';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { MessageModule } from 'primeng/message';
-import {InputText} from 'primeng/inputtext'
+import {InputText} from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [],
@@ -19,7 +20,8 @@ import {InputText} from 'primeng/inputtext'
     ButtonModule,
     CardModule,
     MessageModule,
-    InputText
+    InputText,
+    TableModule
   ],
   exports:[
     FloatLabelModule,
@@ -28,7 +30,8 @@ import {InputText} from 'primeng/inputtext'
     ButtonModule,
     CardModule,
     MessageModule,
-    InputText
+    InputText,
+    TableModule
   ]
 })
 export class CustomPrimengModule { }

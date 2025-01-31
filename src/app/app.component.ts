@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from "./login/login.component"
 import { FormUserComponent } from './form-user/form-user.component';
 import { CustomPrimengModule } from './custom-primeng/custom-primeng.module';
+import { ShowUsersComponent } from './show-users/show-users.component';
 
 @Component({
   selector: 'app-root',
-  imports: [/*RouterOutlet, */LoginComponent, CustomPrimengModule],
+  imports: [CustomPrimengModule, ShowUsersComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

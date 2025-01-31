@@ -3,30 +3,48 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UserService } from '../user/user-service.service';
 import { UserInterface, CompleteUserInterface } from '../user/user-interface';
 import { User } from '../user/user';
+import { CustomPrimengModule } from '../custom-primeng/custom-primeng.module';
 
 
 @Component({
   selector: 'app-form-user',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CustomPrimengModule],
   templateUrl: './form-user.component.html',
   styleUrl: './form-user.component.css'
 })
 export class FormUserComponent {
+  user:FormGroup;
 
-  constructor (private service:UserService){}
+  constructor (private service:UserService){
+    this.user = new FormGroup({  
+      nombre: new FormControl('',[Validators.required]),
+      correoElectronico: new FormControl('',[Validators.email, Validators.required]),
+      perfil: new FormControl('',[Validators.required]),
+      contrasena: new FormControl('',[Validators.required, Validators.minLength(7)])
+    });
+  }
+
+  get nombre(): FormControl{
+    return this.user.get("nombre") as FormControl;
+  }
+
+  get email(): FormControl{
+    return this.user.get("correoElectronico") as FormControl;
+  }
+
+  get perfil(): FormControl{
+    return this.user.get("perfil") as FormControl;
+  }
+
+  get contrasena():FormControl{
+    return this.user.get("contrasena") as FormControl;
+  }
 
   @Input() nombreUsuario:string = "";
 
   idUsuario: number = -1;
 
   usuario: CompleteUserInterface | undefined = undefined
-
-  user = new FormGroup({  
-    nombre: new FormControl('',[Validators.required]),
-    correoElectronico: new FormControl('',[Validators.email, Validators.required]),
-    perfil: new FormControl('',[Validators.required]),
-    contrasena: new FormControl('',[Validators.required, Validators.minLength(7)])
-  });
 
   ngOnInit(){
     if (this.nombreUsuario != ""){

@@ -1,27 +1,3 @@
-.p-inputgroup{
-    padding: 0.5rem 1.5rem;
-    --p-inputgroup-addon-background: var(--p-indigo-400);
-    --p-inputgroup-addon-padding: 0.5;
-}
- 
-.p-inputtext{
-    --p-inputtext-filled-background: var(--p-indigo-100);
-    --p-inputtext-filled-focus-background: var(--p-indigo-100);
-    --p-inputtext-border-color: var(--p-cyan-300);
-    --p-inputtext-hover-border-color: var(--p-cyan-600);
-    --p-inputtext-focus-border-color: var(--p-cyan-600);
-    --p-inputtext-invalid-border-color: var(--p-orange-600);
-    --p-inputtext-focus-ring-shadow: 0 0 0 0.15rem var(--p-cyan-300);
-    --p-inputtext-padding-x: 0.1rem;
-    --p-inputtext-padding-x: 0.5rem;
-    --p-inputtext-transition-duration: 2seg;
-}
-.p-floatlabel{
-    --p-floatlabel-color: var(--p-cyan-600);
-    --p-floatlabel-focus-color: var(--p-cyan-600);
-    --p-floatlabel-transition-duration: var(--p-cyan-600)
-}
-
 .form-login{
     display: flex;
     justify-content: center;
@@ -32,19 +8,6 @@
     font-style: normal;
 }
 
-.p-button{
-    --p-button-primary-color: #ffffff;
-    --p-button-primary-background: #da0e0e;
-    --p-button-primary-active-background:var(--p-rose-600); 
-    --p-button-primary-hover-background: var(--p-rose-700);
-    
-}
-
 ::ng-deep .p-card .p-card-body{
-    padding: 0.5rem !important;
-}
-
-.mensajes-error {
-    display: flex;
-    justify-content: center;
+    padding: 0.2rem !important;
 }

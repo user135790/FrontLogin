@@ -1,4 +1,4 @@
-.form-create{
+.table-users{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,8 +6,4 @@
     font-family: "Varela Round", serif;
     font-weight: 400;
     font-style: normal;
-}
-
-::ng-deep .p-card .p-card-body{
-    padding: 0.2rem !important;
 }
