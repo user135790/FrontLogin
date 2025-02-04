@@ -12,35 +12,40 @@ export class BackgroundSvgComponent {
 
   movimiento = "";
 
-  mover(){
-    let lineaTemporal = gsap.timeline();
-    lineaTemporal.from("#g2932", {duration:10, x:-1000},0)
-    .from("#g4318",{duration:10, x:-1000},0)
-    .from("#g4336", {duration:10, x:-1000},0)
-    .from("#g4348", {duration:10, x:-1000},0)
-    .from("#g4360", {duration:10, x:-1000},0)
-    .from("#g4372", {duration:10, x:-1000},0)
-    .from("#g4384", {duration:10, x:-1000},0)
-    .from("#g4396", {duration:10, x:-1000},0)
-    .from("#g4408", {duration:10, x:-1000},0)
-    .from("#g4420", {duration:10, x:-1000},0)
-    .from("#g4436", {duration:10, x:-1000},0)
-    .from("#g4448", {duration:10, x:-1000},0)
-    .from("#g4464", {duration:10, x:-1000},0)
-    .from("#g4476", {duration:10, x:-1000},0)
-    .from("#g4505", {duration:10, x:-1000},0)
-    .from("#g4516", {duration:10, x:-1000},0)
-    .from("#g4528", {duration:10, x:-1000},0)
-    .from("#g4544", {duration:10, x:-1000},0)
-    .from("#g4504", {duration:10, x:-1000},0)
-    .from("#g4516", {duration:10, x:-1000},0)
-    .from("#g4528", {duration:10, x:-1000},0)
-    .from("#g4544", {duration:10, x:-1000},0)
-    .from("#g4560", {duration:10, x:-1000},0)
-    .from("#g4572", {duration:10, x:-1000},0)
-    .from("#g4584", {duration:10, x:-1000},0)
-    .from("#g4596", {duration:10, x:-1000},0)
-    .from("#g4608", {duration:10, x:-1000},0)
-    this.movimiento = "transform: translate(-1000px, 0px);"
+  calcularDesplazamiento(id:string, distancia:number):number{
+    let posicionX= gsap.getProperty(id, 'x') as number; 
+    return posicionX + distancia;
   }
+
+  ngAfterViewInit(){
+
+    let lineaTiempo = gsap.timeline()
+    let identificadores = ["#g92","#g96","#g100", "#g72", "#g88"]
+    let haciaAtras = ["#g108","#g104"]
+    let aguaAdelante = ["#g354","#g376"]
+    let aguaAtras = ["#g368","#g372"]
+
+    aguaAdelante.forEach(id=>{
+      console.log(id)
+      lineaTiempo.to(id,{duration:20, x: this.calcularDesplazamiento(id, 50), stagger:0, repeat:1},0)
+    })
+
+    aguaAtras.forEach(id=>{
+      console.log(id)
+      lineaTiempo.to(id,{duration:20, x: this.calcularDesplazamiento(id, 50), stagger:0, repeat:1},0)
+    })
+
+    haciaAtras.forEach(id=>{
+      console.log(id)
+      lineaTiempo.to(id,{duration:30, x: this.calcularDesplazamiento(id, -500), stagger:0, repeat:1},0)
+    })
+
+    identificadores.forEach(id=>{
+      console.log(id)
+      lineaTiempo.to(id,{duration:30, x: this.calcularDesplazamiento(id, 300), stagger:0, repeat:1},0)
+    })
+
+  }
+
+  
 }

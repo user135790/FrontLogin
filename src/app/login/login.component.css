@@ -1,13 +1,22 @@
 .form-login{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     font-family: "Varela Round", serif;
-    font-weight: 400;
+    font-weight: 300;
     font-style: normal;
+    height: 90vh;
+    top: 25px;
+    color: white;
+}
+
+::ng-deep.p-card{
+    --p-card-background: linear-gradient(to top, #08136c, #87c1ee);
 }
 
 ::ng-deep .p-card .p-card-body{
+    display: block;
     padding: 0.2rem !important;
 }

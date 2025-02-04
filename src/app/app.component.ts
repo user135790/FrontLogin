@@ -8,7 +8,7 @@ import { BackgroundSvgComponent } from './background-svg/background-svg.componen
 
 @Component({
   selector: 'app-root',
-  imports: [CustomPrimengModule, BackgroundSvgComponent],
+  imports: [CustomPrimengModule, BackgroundSvgComponent, LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

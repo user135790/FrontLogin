@@ -7,7 +7,7 @@
     --p-inputtext-invalid-border-color: var(--p-orange-600);
     --p-inputtext-focus-ring-shadow: 0 0 0 0.15rem var(--p-cyan-300);
     --p-inputtext-padding-x: 0.1rem;
-    --p-inputtext-padding-y: 0.2rem;
+    --p-inputtext-padding-y: 0.1rem;
     --p-inputtext-transition-duration: 2seg;
 }
 .p-floatlabel{
@@ -21,7 +21,7 @@
     --p-button-primary-background: #da0e0e;
     --p-button-primary-active-background:var(--p-rose-600); 
     --p-button-primary-hover-background: var(--p-rose-700);
-    --p-button-sm-padding-y: 0.3rem;
+    --p-button-sm-padding-y: 0.2rem;
     
 }
 
@@ -31,9 +31,9 @@
 
 
 .p-inputgroup{
-    padding: 0.3rem 1.5rem;
+    padding: 0.3rem 0.5rem;
     --p-inputgroup-addon-background: var(--p-indigo-400);
-    --p-inputgroup-addon-padding: 0.5;
+    --p-inputgroup-addon-padding: 0.1rem;
 }
 
 .mensajes-error {
