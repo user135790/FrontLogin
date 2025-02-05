@@ -4,7 +4,13 @@
             <app-background-svg>
             </app-background-svg>
             <div class="login">
-                <app-login></app-login>
+                @if(!session){
+                    <app-login (sessionUpdateEvent)="getSession($event)"></app-login>
+                }
+                @if(session){
+                    <app-show-users></app-show-users>
+                }
+                
             </div>    
         </div>
     </div>

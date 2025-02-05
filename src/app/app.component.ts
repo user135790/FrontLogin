@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { LoginComponent } from "./login/login.component"
 import { FormUserComponent } from './form-user/form-user.component';
 import { CustomPrimengModule } from './custom-primeng/custom-primeng.module';
@@ -8,10 +8,15 @@ import { BackgroundSvgComponent } from './background-svg/background-svg.componen
 
 @Component({
   selector: 'app-root',
-  imports: [CustomPrimengModule, BackgroundSvgComponent, LoginComponent],
+  imports: [CustomPrimengModule, BackgroundSvgComponent,LoginComponent, ShowUsersComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'FrontLogin';
+  session = sessionStorage.getItem("token")
+
+  getSession(token:string){
+    this.session = sessionStorage.getItem("token")
+  }
 }
