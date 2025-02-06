@@ -1,0 +1,19 @@
+<section>
+    <div class="svg">
+        <app-background-logged></app-background-logged>
+    </div>
+    <div class="not-found">
+        <p-card>
+            <img class="img-not-found" src="../../3804918.jpg">
+            <div class="regresar">
+                @if (this.logged){
+                    <button class="btn-regresar" pButton routerLink="/homeAdmin">Regresar</button>
+                }@else{
+                    <button class="btn-regresar" pButton routerLink="/login">Regresar</button>
+                }
+            </div>
+            
+        </p-card>
+    </div>
+</section>
+

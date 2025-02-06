@@ -1,0 +1,13 @@
+.info-user{
+
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-family: "Varela Round", serif;
+        font-weight: 400;
+        font-style: normal;
+        height: 90vh;
+}
+

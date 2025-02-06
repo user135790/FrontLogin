@@ -1,16 +1,10 @@
 <main class="main">
     <div class="content">
         <div class="background">
-            <app-background-svg>
-            </app-background-svg>
             <div class="login">
-                @if(!session){
-                    <app-login (sessionUpdateEvent)="getSession($event)"></app-login>
-                }
-                @if(session){
-                    <app-show-users></app-show-users>
-                }
-                
+                <router-outlet>
+                    
+                </router-outlet>
             </div>    
         </div>
     </div>

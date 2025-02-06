@@ -1,0 +1,42 @@
+<section>
+    <div class="svg">
+        <app-background-logged></app-background-logged>
+    </div>
+    
+    <div class="info-user">
+    
+        <p-card>
+            @if(!editar){
+                <p-dataview [value]="user" layout="grid">
+                    <ng-template #header>
+                        Bienvenido {{this.user?.perfil}}
+                    </ng-template>
+                    <ng-template #list let-user>
+                        <tr>
+                            <td>Nombre de Usuario</td>
+                            <td>{{user.nombre}}</td>
+                        </tr>
+                        <tr>
+                            <td>Contraseña</td>
+                            <td>{{user.contrasena}}</td>
+                        </tr>
+                        <tr>
+                            <td>Perfil</td>
+                            <td>{{user.perfil}}</td>
+                        </tr>
+                        <tr>
+                            <td>Perfil</td>
+                            <td>{{user.perfil}}</td>
+                        </tr>
+                    </ng-template>       
+                </p-dataview>
+                <button pButton (click)="HabilitarEdicion()" routerLinkActive="active" routerLink="/home/editar">Editar</button>
+            }
+            <router-outlet></router-outlet>
+            
+            
+        </p-card>
+    </div>
+    
+</section>
+

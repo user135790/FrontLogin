@@ -1,0 +1,25 @@
+.not-found{
+    position: absolute;
+    left: 50%;
+    top: 53%;
+    transform: translate(-50%, -50%);
+}
+
+.regresar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-not-found{
+    max-width: 300px;
+}
+
+::ng-deep.p-card{
+    --p-card-background: linear-gradient(to top, #08136c, #87c1ee);
+}
+
+::ng-deep .p-card .p-card-body{
+    display: block;
+    padding: 0.2rem !important;
+}

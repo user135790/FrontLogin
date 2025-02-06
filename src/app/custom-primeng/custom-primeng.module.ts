@@ -9,6 +9,7 @@ import { CardModule } from 'primeng/card';
 import { MessageModule } from 'primeng/message';
 import {InputText} from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
+import { DataViewModule } from 'primeng/dataview';
 
 @NgModule({
   declarations: [],
@@ -21,7 +22,8 @@ import { TableModule } from 'primeng/table';
     CardModule,
     MessageModule,
     InputText,
-    TableModule
+    TableModule,
+    DataViewModule
   ],
   exports:[
     FloatLabelModule,
@@ -31,7 +33,8 @@ import { TableModule } from 'primeng/table';
     CardModule,
     MessageModule,
     InputText,
-    TableModule
+    TableModule,
+    DataViewModule
   ]
 })
 export class CustomPrimengModule { }

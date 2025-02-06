@@ -4,11 +4,13 @@ import { UserService } from '../user/user-service.service';
 import { UserInterface, CompleteUserInterface } from '../user/user-interface';
 import { User } from '../user/user';
 import { CustomPrimengModule } from '../custom-primeng/custom-primeng.module';
+import { BackgroundLoggedComponent } from '../background-logged/background-logged.component';
+
 
 
 @Component({
   selector: 'app-form-user',
-  imports: [ReactiveFormsModule, CustomPrimengModule],
+  imports: [ReactiveFormsModule, CustomPrimengModule,BackgroundLoggedComponent],
   templateUrl: './form-user.component.html',
   styleUrl: './form-user.component.css'
 })

@@ -1,15 +1,16 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {ReactiveFormsModule, Validators} from '@angular/forms';
 import {FormControl, FormGroup} from '@angular/forms';
 import { UserService } from '../user/user-service.service';
 import { CustomPrimengModule } from '../custom-primeng/custom-primeng.module';
 import { distinctUntilChanged } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
+import { BackgroundSvgComponent } from '../background-svg/background-svg.component';
 
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CustomPrimengModule],
+  imports: [ReactiveFormsModule, CustomPrimengModule,BackgroundSvgComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -17,8 +18,10 @@ export class LoginComponent{
 
   login: FormGroup;
   @Output() sessionUpdateEvent = new EventEmitter()
+  @Input() logged;
 
   constructor (private service:UserService, private route:Router){
+    this.logged = false;
     this.login = new FormGroup({  
       nombre: new FormControl('',[Validators.required]),
       contrasena: new FormControl('',[Validators.required, Validators.minLength(7)])
