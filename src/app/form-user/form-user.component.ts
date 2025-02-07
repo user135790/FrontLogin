@@ -16,6 +16,7 @@ import { BackgroundLoggedComponent } from '../background-logged/background-logge
 })
 export class FormUserComponent {
   user:FormGroup;
+  isToEdit:Boolean = false;
 
   constructor (private service:UserService){
     this.user = new FormGroup({  
@@ -42,14 +43,15 @@ export class FormUserComponent {
     return this.user.get("contrasena") as FormControl;
   }
 
-  @Input() nombreUsuario:string = "";
+  @Input('usuario') nombreUsuario:string = "";
 
   idUsuario: number = -1;
 
   usuario: CompleteUserInterface | undefined = undefined
 
   ngOnInit(){
-    if (this.nombreUsuario != ""){
+    if (this.nombreUsuario){
+      this.isToEdit = true
       this.service.findUser(this.nombreUsuario).subscribe((data)=>{
         this.idUsuario = data.id
         delete data.id

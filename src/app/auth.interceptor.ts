@@ -6,7 +6,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   
   const auth = inject(AuthService).getAuth();
   if (auth != null){
-    console.log("hola")
     const newReq = req.clone({
       headers: req.headers.set("Authorization", "Basic "+ auth)
     })

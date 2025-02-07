@@ -105,11 +105,18 @@
                     
                     
                 }
+                @if(isToEdit){
+                    <button size="small" pButton type="submit">
+                        <i pButtonIcon class="pi pi-user-edit"></i>
+                        <span pButtonLabel>Editar</span>
+                    </button>
+                }@else {
+                    <button size="small" pButton type="submit">
+                        <i pButtonIcon class="pi pi-user-plus"></i>
+                        <span pButtonLabel>Crear</span>
+                    </button>
+                }
                 
-                <button size="small" pButton type="submit">
-                    <i pButtonIcon class="pi pi-user-plus"></i>
-                    <span pButtonLabel>Crear</span>
-                </button>
             </form>
         </p-card>
     </div>

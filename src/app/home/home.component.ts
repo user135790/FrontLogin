@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { CustomPrimengModule } from '../custom-primeng/custom-primeng.module';
 import { UserService } from '../user/user-service.service';
 import { CompleteUserInterface } from '../user/user-interface';
@@ -8,22 +8,27 @@ import { BackgroundLoggedComponent } from '../background-logged/background-logge
 
 @Component({
   selector: 'app-home',
-  imports: [CustomPrimengModule, RouterLink, RouterOutlet, RouterLinkActive,BackgroundLoggedComponent],
+  imports: [CustomPrimengModule,BackgroundLoggedComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
 
 
-  @Input() username:string ="";
+  
   user:CompleteUserInterface|any
   editar=false
+  
 
-  constructor(userService:UserService){
-    
-    userService.findUser(this.username).subscribe((data)=>{
+  constructor(private userService:UserService){
+  
+  }
+
+  @Input() username="";
+
+  ngOnInit(){
+    this.userService.findUser(this.username).subscribe((data: CompleteUserInterface)=>{
       this.user = data as CompleteUserInterface
-      
     })
   }
 

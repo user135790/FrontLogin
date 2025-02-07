@@ -6,35 +6,29 @@
     <div class="info-user">
     
         <p-card>
-            @if(!editar){
-                <p-dataview [value]="user" layout="grid">
+                <p-dataview [value]="this.user" layout="grid">
                     <ng-template #header>
                         Bienvenido {{this.user?.perfil}}
                     </ng-template>
-                    <ng-template #list let-user>
+                    <ng-template >
                         <tr>
                             <td>Nombre de Usuario</td>
-                            <td>{{user.nombre}}</td>
+                            <td>{{this.user?.nombre}}</td>
                         </tr>
                         <tr>
                             <td>Contraseña</td>
-                            <td>{{user.contrasena}}</td>
+                            <td>{{this.user?.contrasena}}</td>
                         </tr>
                         <tr>
                             <td>Perfil</td>
-                            <td>{{user.perfil}}</td>
+                            <td>{{this.user?.perfil}}</td>
                         </tr>
                         <tr>
                             <td>Perfil</td>
-                            <td>{{user.perfil}}</td>
+                            <td>{{this.user?.perfil}}</td>
                         </tr>
                     </ng-template>       
                 </p-dataview>
-                <button pButton (click)="HabilitarEdicion()" routerLinkActive="active" routerLink="/home/editar">Editar</button>
-            }
-            <router-outlet></router-outlet>
-            
-            
         </p-card>
     </div>
     

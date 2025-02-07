@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {ReactiveFormsModule, Validators} from '@angular/forms';
 import {FormControl, FormGroup} from '@angular/forms';
 import { UserService } from '../user/user-service.service';
+import { AuthService } from '../auth.service';
 import { CustomPrimengModule } from '../custom-primeng/custom-primeng.module';
 import { distinctUntilChanged } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
@@ -10,7 +11,7 @@ import { BackgroundSvgComponent } from '../background-svg/background-svg.compone
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CustomPrimengModule,BackgroundSvgComponent],
+  imports: [ReactiveFormsModule, CustomPrimengModule,BackgroundSvgComponent,RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -20,7 +21,7 @@ export class LoginComponent{
   @Output() sessionUpdateEvent = new EventEmitter()
   @Input() logged;
 
-  constructor (private service:UserService, private route:Router){
+  constructor (private service:UserService, private route:Router, private auth:AuthService){
     this.logged = false;
     this.login = new FormGroup({  
       nombre: new FormControl('',[Validators.required]),
@@ -39,13 +40,20 @@ export class LoginComponent{
   propiedadesCss = {colorIcono:"#da0e0e", disabled:true}
 
   onSubmitLogin() {
-    let perfil = "";
+    let perfil = ""
     this.service.sendLogin(this.login.value).subscribe(
       (data)=>{
-        let contraseña = data.contrasena
-        let usuario = data.usuario
-        sessionStorage.setItem("token",btoa(usuario+':'+contraseña));
+        this.auth.login(btoa(data.nombre+':'+data.contrasena));
+        
+        if(data.perfil == "INVITADO"){
+          this.route.navigate(['home/',data.nombre])
+        }
+        if(data.perfil == "ADMINISTRADOR"){
+          this.route.navigate(['admin/'])
+        }
+        
         this.sessionUpdateEvent.emit()
+
       }
     );
     
