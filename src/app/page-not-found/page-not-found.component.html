@@ -7,7 +7,12 @@
             <img class="img-not-found" src="../../3804918.jpg">
             <div class="regresar">
                 @if (this.logged){
-                    <button class="btn-regresar" pButton routerLink="/homeAdmin">Regresar</button>
+                    @if(this.rol == "ADMINISTRADOR"){
+                        <button class="btn-regresar" pButton routerLink="admin">Regresar</button>    
+                    }
+                    @if(this.rol == "INVITADO"){
+                        <button class="btn-regresar" pButton routerLink="admin">Regresar</button>
+                    }  
                 }@else{
                     <button class="btn-regresar" pButton routerLink="/login">Regresar</button>
                 }

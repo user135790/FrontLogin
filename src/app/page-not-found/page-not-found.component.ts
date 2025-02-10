@@ -14,9 +14,17 @@ export class PageNotFoundComponent {
 
 
   logged = false;
+  rol = ""
 
   constructor(authService:AuthService){
-    if(authService.getAuth()!=null){
+    if(authService.getAuth()){
+      if(authService.getRol()=="ADMINISTRADOR"){
+        this.rol = "ADMINISTRADOR"
+      }
+      if(authService.getRol()=="INVITADO"){
+        this.rol = "INVITADO"
+      }
+      
       this.logged = true
     }else{
       this.logged = false
