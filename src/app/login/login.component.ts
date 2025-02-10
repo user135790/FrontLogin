@@ -43,12 +43,15 @@ export class LoginComponent{
     let perfil = ""
     this.service.sendLogin(this.login.value).subscribe(
       (data)=>{
-        this.auth.login(btoa(data.nombre+':'+data.contrasena));
-        
-        if(data.perfil == "INVITADO"){
-          this.route.navigate(['home/',data.nombre])
+        if(data){
+          this.auth.login(data.token);
+          console.log(this.auth.getRol());
+          perfil = this.auth.getRol();
         }
-        if(data.perfil == "ADMINISTRADOR"){
+        if(perfil == "INVITADO"){
+          this.route.navigate(['home/',this.auth.getUser()])
+        }
+        if(perfil == "ADMINISTRADOR"){
           this.route.navigate(['admin/'])
         }
         
@@ -56,6 +59,7 @@ export class LoginComponent{
 
       }
     );
+    
     
   }
 

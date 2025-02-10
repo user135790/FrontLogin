@@ -13,7 +13,7 @@ export class UserService {
   private urlApi = "/usuarios/"
 
   sendLogin(data:any): Observable<any>{
-    return this.http.post(this.urlApi+"login",data, {withCredentials:true})
+    return this.http.post(this.urlApi+"auth",data)
   }
 
   createUser(user: UserInterface): Observable<any>{

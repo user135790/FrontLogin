@@ -7,7 +7,6 @@ import { CustomPrimengModule } from '../custom-primeng/custom-primeng.module';
 import { BackgroundLoggedComponent } from '../background-logged/background-logged.component';
 
 
-
 @Component({
   selector: 'app-form-user',
   imports: [ReactiveFormsModule, CustomPrimengModule,BackgroundLoggedComponent],
@@ -61,7 +60,7 @@ export class FormUserComponent {
   }
 
   onSubmitUser() {
-    if(this.nombreUsuario != ""){
+    if(this.nombreUsuario){
       let nuevoUsuario: Partial<CompleteUserInterface> = this.user.value as CompleteUserInterface
       nuevoUsuario.id = this.idUsuario
       this.service.updateUser(nuevoUsuario as CompleteUserInterface).subscribe()
