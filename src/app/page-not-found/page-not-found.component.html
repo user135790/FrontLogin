@@ -8,10 +8,10 @@
             <div class="regresar">
                 @if (this.logged){
                     @if(this.rol == "ADMINISTRADOR"){
-                        <button class="btn-regresar" pButton routerLink="admin">Regresar</button>    
+                        <button class="btn-regresar" pButton routerLink="../admin">Regresar</button>    
                     }
                     @if(this.rol == "INVITADO"){
-                        <button class="btn-regresar" pButton routerLink="admin">Regresar</button>
+                        <button class="btn-regresar" pButton routerLink="../home">Regresar</button>
                     }  
                 }@else{
                     <button class="btn-regresar" pButton routerLink="/login">Regresar</button>

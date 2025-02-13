@@ -7,13 +7,16 @@ import { CustomPrimengModule } from '../custom-primeng/custom-primeng.module';
 import { distinctUntilChanged } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { BackgroundSvgComponent } from '../background-svg/background-svg.component';
+import { MessageService } from 'primeng/api';
+import { Toast } from 'primeng/toast';
 
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CustomPrimengModule,BackgroundSvgComponent,RouterLink],
+  imports: [ReactiveFormsModule, CustomPrimengModule,BackgroundSvgComponent,RouterLink,Toast],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+  providers:[MessageService]
 })
 export class LoginComponent{
 
@@ -21,7 +24,7 @@ export class LoginComponent{
   @Output() sessionUpdateEvent = new EventEmitter()
   @Input() logged;
 
-  constructor (private service:UserService, private route:Router, private auth:AuthService){
+  constructor (private service:UserService, private route:Router, private auth:AuthService, private messageService:MessageService){
     this.logged = false;
     this.login = new FormGroup({  
       nombre: new FormControl('',[Validators.required]),
@@ -41,11 +44,10 @@ export class LoginComponent{
 
   onSubmitLogin() {
     let perfil = ""
-    this.service.sendLogin(this.login.value).subscribe(
-      (data)=>{
+    this.service.sendLogin(this.login.value).subscribe({
+      next: (data)=>{
         if(data){
           this.auth.login(data.token);
-          console.log(this.auth.getRol());
           perfil = this.auth.getRol();
         }
         if(perfil == "INVITADO"){
@@ -54,13 +56,16 @@ export class LoginComponent{
         if(perfil == "ADMINISTRADOR"){
           this.route.navigate(['admin/'])
         }
-        
         this.sessionUpdateEvent.emit()
-
+      },
+      error:(error)=>{
+        this.messageService.add({ severity: 'danger', summary: 'Error Login', detail: 'Credenciales erroneas', life: 3000 });
+      },
+      complete:()=>{
+        console.info('complete')
       }
-    );
-    
-    
+
+    });
   }
 
   ngOnInit(){
@@ -73,6 +78,4 @@ export class LoginComponent{
       })
   }
 
-  
-  
 }

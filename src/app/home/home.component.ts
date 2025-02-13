@@ -2,8 +2,9 @@ import { Component, Inject, Input } from '@angular/core';
 import { CustomPrimengModule } from '../custom-primeng/custom-primeng.module';
 import { UserService } from '../user/user-service.service';
 import { CompleteUserInterface } from '../user/user-interface';
-import { RouterLink, RouterOutlet, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterOutlet, RouterLinkActive, Router } from '@angular/router';
 import { BackgroundLoggedComponent } from '../background-logged/background-logged.component';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class HomeComponent {
   editar=false
   
 
-  constructor(private userService:UserService){
+  constructor(private userService:UserService, private auth:AuthService, private route:Router){
   
   }
 
@@ -30,6 +31,11 @@ export class HomeComponent {
     this.userService.findUser(this.username).subscribe((data: CompleteUserInterface)=>{
       this.user = data as CompleteUserInterface
     })
+  }
+
+  cerrarSesion(){
+    this.auth.logout()
+    this.route.navigate(["/login"])
   }
 
   HabilitarEdicion(){

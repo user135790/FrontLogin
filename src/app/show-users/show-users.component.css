@@ -6,8 +6,25 @@
     font-family: "Varela Round", serif;
     font-weight: 400;
     font-style: normal;
+    overflow: scroll;
 }
 
 .active-edit-user{
     display: block;
+}
+
+::ng-deep .p-card{
+    position: relative;
+    
+}
+
+::ng-deep p-card{
+    overflow: auto;
+}
+
+
+@media (min-width: 300px) and (max-width: 900px) {
+    ::ng-deep .p-menubar{
+        background: none;
+    }
 }

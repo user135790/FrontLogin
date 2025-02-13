@@ -11,3 +11,12 @@
         height: 90vh;
 }
 
+::ng-deep .p-menubar{
+        --p-menubar-padding: 0rem;
+}
+
+@media (min-width: 300px) and (max-width: 900px) {
+        ::ng-deep .p-menubar{
+            background: none;
+        }
+    }

@@ -13,7 +13,9 @@
 }
 
 ::ng-deep.p-card{
-    --p-card-background: linear-gradient(to top, #08136c, #87c1ee);
+    --p-card-background: var(--p-indigo-900);
+    opacity: 0.8;
+    color: white;
 }
 
 ::ng-deep .p-card .p-card-body{

@@ -5,12 +5,12 @@ import { UserInterface, CompleteUserInterface } from '../user/user-interface';
 import { User } from '../user/user';
 import { CustomPrimengModule } from '../custom-primeng/custom-primeng.module';
 import { BackgroundLoggedComponent } from '../background-logged/background-logged.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-form-user',
-  imports: [ReactiveFormsModule, CustomPrimengModule,BackgroundLoggedComponent, RouterLink],
+  imports: [ReactiveFormsModule, CustomPrimengModule,BackgroundLoggedComponent],
   templateUrl: './form-user.component.html',
   styleUrl: './form-user.component.css'
 })
@@ -18,7 +18,7 @@ export class FormUserComponent {
   user:FormGroup;
   isToEdit:Boolean = false;
 
-  constructor (private service:UserService){
+  constructor (private service:UserService, private route:Router){
     this.user = new FormGroup({  
       nombre: new FormControl('',[Validators.required]),
       correoElectronico: new FormControl('',[Validators.email, Validators.required]),
@@ -64,9 +64,12 @@ export class FormUserComponent {
     if(this.nombreUsuario){
       let nuevoUsuario: Partial<CompleteUserInterface> = this.user.value as CompleteUserInterface
       nuevoUsuario.id = this.idUsuario
-      this.service.updateUser(nuevoUsuario as CompleteUserInterface).subscribe()
+      this.service.updateUser(nuevoUsuario as CompleteUserInterface);
+      this.route.navigate(["/admin"])
+
     }else{
-      this.service.createUser(this.user.value as UserInterface).subscribe()
+      this.service.createUser(this.user.value as UserInterface)
+      this.route.navigate(["/login"])
     }
     
   }

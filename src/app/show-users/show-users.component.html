@@ -1,12 +1,22 @@
+
+
 @if(display=="show"){
 <section>
     <div class="svg">
         <app-background-logged></app-background-logged>
     </div>
+    <p-menubar>
+        <button pButton size="small" (click)="cerrarSesion()">
+            <i pButtonIcon class="pi pi-sign-out"></i>
+            <span pButtonLabel>Salir</span>
+        </button>
+    </p-menubar>
     <div class="table-users">
         <p-card>
             <p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
+                
                 <ng-template #header>
+                    <h1>Gestion de Usuarios</h1>
                     <tr>
                         <th>Nombre</th>
                         <th>Correo</th>

@@ -16,6 +16,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   if(urlTypes.admin.includes(route.routeConfig?.title as string)){
     return auth.isLogged("ADMINISTRADOR")
   }
-  return false;
+  return true;
   
 };

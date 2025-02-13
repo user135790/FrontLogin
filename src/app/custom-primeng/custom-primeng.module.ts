@@ -10,6 +10,8 @@ import { MessageModule } from 'primeng/message';
 import {InputText} from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { DataViewModule } from 'primeng/dataview';
+import { MenubarModule } from 'primeng/menubar';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [],
@@ -23,7 +25,9 @@ import { DataViewModule } from 'primeng/dataview';
     MessageModule,
     InputText,
     TableModule,
-    DataViewModule
+    DataViewModule,
+    MenubarModule,
+    ToastModule
   ],
   exports:[
     FloatLabelModule,
@@ -34,7 +38,9 @@ import { DataViewModule } from 'primeng/dataview';
     MessageModule,
     InputText,
     TableModule,
-    DataViewModule
+    DataViewModule,
+    MenubarModule,
+    ToastModule
   ]
 })
 export class CustomPrimengModule { }

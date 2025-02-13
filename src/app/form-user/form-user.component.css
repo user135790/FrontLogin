@@ -7,14 +7,59 @@
     font-family: "Varela Round", serif;
     font-weight: 400;
     font-style: normal;
-    height: 90vh;
+    padding: 0 5px;
 }
 
 .svg{
     width: 100%;
 }
 
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.subcontainer{
+    display: flex;
+    position: relative;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    width: 50%;
+}
+
+.form-img{
+    position: relative;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: white;
+    padding: 0 10px;
+}
+
+.form-img{
+    width: 50%;
+}
+
+.form-img img{
+    width: 100%;
+}
 
 ::ng-deep .p-card .p-card-body{
     padding: 0.2rem !important;
+}
+
+::ng-deep .p-card .p-card-body .p-card-content{
+    display: flex;
+}
+
+@media (min-width: 300px) and (max-width: 900px) {
+    .form-img{
+        display:none
+    }
+    .subcontainer{
+        width: 100%;
+    }
 }

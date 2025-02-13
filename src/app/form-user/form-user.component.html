@@ -2,122 +2,145 @@
     <div class="svg">
         <app-background-logged></app-background-logged>
     </div>
+    <div class="container">
+        <div class="subcontainer">
+            
+            <div class="form-create">
+                <p-card>
+                    <ng-template #header>
+                        @if (isToEdit) {
+                            <h1>Editar Usuario</h1>    
+                        }@else {
+                            <h1>Registrar Usuario</h1>
+                        }
+                        
+                        
+                    </ng-template>
+                    @if(isToEdit){
+                        <div class="form-img" >
+                            <img src="../../editar.jpg">
+                        </div>
+                    }@else {
+                        <div class="form-img" >
+                            <img src="../../registro.jpg">
+                        </div>
+                    }
+                    
+                    <form [formGroup]="user" (ngSubmit)="onSubmitUser()">
+                        <svg fill="#000000" width="80px" height="80px" viewBox="0 0 24 24" id="add-user-left" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                            <path id="secondary" style="fill: #da0e0e;" d="M5,20a1,1,0,0,0,1-1V18H7a1,1,0,0,0,0-2H6V15a1,1,0,0,0-2,0v1H3a1,1,0,0,0,0,2H4v1A1,1,0,0,0,5,20Z" ></path>
+                            <path id="primary" style="fill: #000000;" d="M13,12a5,5,0,1,1,5-5A5,5,0,0,1,13,12ZM9,15v6a1,1,0,0,0,1,1H20a2,2,0,0,0,2-2,6,6,0,0,0-6-6H10A1,1,0,0,0,9,15Z" ></path></g>
+                        </svg>
+                        @if ((nombre.invalid && nombre.touched) || (contrasena.touched && contrasena.invalid) ||
+                              (perfil.invalid && perfil.touched) || (email.touched && email.invalid)) {
+                            <p-message severity="error" size="small" icon="pi pi-times-circle">Validación fallida</p-message>
+                        }
+                        <p-inputgroup>
+                            <p-inputgroup-addon>
+                                <i class="pi pi-user"></i>
+                            </p-inputgroup-addon>
+                            <p-floatlabel variant="on">
+                                <input pInputText type="text" formControlName="nombre">
+                                <label for="nombre">Nombre de usuario</label>
+                            </p-floatlabel>
+                        </p-inputgroup>
+                        @if (nombre.invalid && (nombre.dirty || nombre.touched)) {
+                            @if (user.hasError("required","nombre")) {
+                                <div class="mensajes-error">
+                                    <p-message severity="error" size="small">Este campo es obligatorio</p-message>
+                                </div>
+                            }
+                        }
+                        
+                        <p-inputgroup>
+                            <p-inputgroup-addon>
+                                <i class="pi pi-lock"></i>
+                            </p-inputgroup-addon>
+                            <p-floatlabel variant="on">
+                                <input pInputText type="password" formControlName="contrasena">
+                                <label for="contrasena">Contraseña</label>
+                            </p-floatlabel>
+                        </p-inputgroup>
+                        @if (contrasena.invalid && (contrasena.dirty || contrasena.touched)) {
+                            @if (user.hasError("required","contrasena")) {
+                                <div class="mensajes-error">
+                                    <p-message severity="error" size="small">Este campo es obligatorio</p-message>
+                                </div>
+                            }
+                            @if (user.hasError("minlength","contrasena")) {
+                                <div class="mensajes-error">
+                                    <p-message severity="error" size="small">
+                                        La contraseña debe tener al menos 7 caracteres
+                                    </p-message>
+                                </div>
+                            }
+                        }
+                
+                        <p-inputgroup>
+                            <p-inputgroup-addon>
+                                <i class="pi pi-at"></i>
+                            </p-inputgroup-addon>
+                            <p-floatlabel variant="on">
+                                <input pInputText type="email" formControlName="correoElectronico">
+                                <label for="correoElectronico">Email</label>
+                            </p-floatlabel>
+                        </p-inputgroup>
+        
+                        @if (email.invalid && (email.dirty || email.touched)) {
+                            @if (user.hasError("required","correoElectronico")) {
+                                <div class="mensajes-error">
+                                    <p-message severity="error" size="small">Este campo es obligatorio</p-message>
+                                </div>
+                            }
+                            @if (user.hasError("email","correoElectronico")) {
+                                <div class="mensajes-error">
+                                    <p-message severity="error" size="small">
+                                        El campo email debe contener una direccion válida
+                                    </p-message>
+                                </div>
+                            }
+                        }
+                
+                        <p-inputgroup>
+                            <p-inputgroup-addon>
+                                <i class="pi pi-users"></i>
+                            </p-inputgroup-addon>
+                            <p-floatlabel variant="on">
+                                <input pInputText type="text" id="perfil" formControlName="perfil">
+                                <label for="perfil">Perfil </label>
+                            </p-floatlabel>
+                        </p-inputgroup>
+                
+                        @if (perfil.invalid && (perfil.dirty || perfil.touched)) {
+                            @if (user.hasError("required","perfil")) {
+                                <div class="mensajes-error">
+                                    <p-message severity="error" size="small">Este campo es obligatorio</p-message>
+                                </div>
+                            }
+                            
+                            
+                        }
+                        @if(isToEdit){
+                            <button size="small" pButton type="submit">
+                                <i pButtonIcon class="pi pi-user-edit"></i>
+                                <span pButtonLabel>Editar</span>
+                            </button>
+                        }@else {
+                            <button size="small" pButton type="submit">
+                                <i pButtonIcon class="pi pi-user-plus"></i>
+                                <span pButtonLabel>Crear</span>
+                            </button>
+                        }
+                        
+                    </form>
+                    
+                </p-card>
+            </div>
     
-    <div class="form-create">
-        <p-card>
-            <ng-template #header>
-                <svg fill="#000000" width="80px" height="80px" viewBox="0 0 24 24" id="add-user-left" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                    <path id="secondary" style="fill: #da0e0e;" d="M5,20a1,1,0,0,0,1-1V18H7a1,1,0,0,0,0-2H6V15a1,1,0,0,0-2,0v1H3a1,1,0,0,0,0,2H4v1A1,1,0,0,0,5,20Z" ></path>
-                    <path id="primary" style="fill: #000000;" d="M13,12a5,5,0,1,1,5-5A5,5,0,0,1,13,12ZM9,15v6a1,1,0,0,0,1,1H20a2,2,0,0,0,2-2,6,6,0,0,0-6-6H10A1,1,0,0,0,9,15Z" ></path></g>
-                </svg>
-                
-            </ng-template>
-            <form [formGroup]="user" (ngSubmit)="onSubmitUser()">
-                @if ((nombre.invalid && nombre.touched) || (contrasena.touched && contrasena.invalid) ||
-                      (perfil.invalid && perfil.touched) || (email.touched && email.invalid)) {
-                    <p-message severity="error" size="small" icon="pi pi-times-circle">Validación fallida</p-message>
-                }
-                <p-inputgroup>
-                    <p-inputgroup-addon>
-                        <i class="pi pi-user"></i>
-                    </p-inputgroup-addon>
-                    <p-floatlabel variant="on">
-                        <input pInputText type="text" formControlName="nombre">
-                        <label for="nombre">Nombre de usuario</label>
-                    </p-floatlabel>
-                </p-inputgroup>
-                @if (nombre.invalid && (nombre.dirty || nombre.touched)) {
-                    @if (user.hasError("required","nombre")) {
-                        <div class="mensajes-error">
-                            <p-message severity="error" size="small">Este campo es obligatorio</p-message>
-                        </div>
-                    }
-                }
-                
-                <p-inputgroup>
-                    <p-inputgroup-addon>
-                        <i class="pi pi-lock"></i>
-                    </p-inputgroup-addon>
-                    <p-floatlabel variant="on">
-                        <input pInputText type="password" formControlName="contrasena">
-                        <label for="contrasena">Contraseña</label>
-                    </p-floatlabel>
-                </p-inputgroup>
-                @if (contrasena.invalid && (contrasena.dirty || contrasena.touched)) {
-                    @if (user.hasError("required","contrasena")) {
-                        <div class="mensajes-error">
-                            <p-message severity="error" size="small">Este campo es obligatorio</p-message>
-                        </div>
-                    }
-                    @if (user.hasError("minlength","contrasena")) {
-                        <div class="mensajes-error">
-                            <p-message severity="error" size="small">
-                                La contraseña debe tener al menos 7 caracteres
-                            </p-message>
-                        </div>
-                    }
-                }
-        
-                <p-inputgroup>
-                    <p-inputgroup-addon>
-                        <i class="pi pi-at"></i>
-                    </p-inputgroup-addon>
-                    <p-floatlabel variant="on">
-                        <input pInputText type="email" formControlName="correoElectronico">
-                        <label for="correoElectronico">Email</label>
-                    </p-floatlabel>
-                </p-inputgroup>
-
-                @if (email.invalid && (email.dirty || email.touched)) {
-                    @if (user.hasError("required","correoElectronico")) {
-                        <div class="mensajes-error">
-                            <p-message severity="error" size="small">Este campo es obligatorio</p-message>
-                        </div>
-                    }
-                    @if (user.hasError("email","correoElectronico")) {
-                        <div class="mensajes-error">
-                            <p-message severity="error" size="small">
-                                El campo email debe contener una direccion válida
-                            </p-message>
-                        </div>
-                    }
-                }
-        
-                <p-inputgroup>
-                    <p-inputgroup-addon>
-                        <i class="pi pi-users"></i>
-                    </p-inputgroup-addon>
-                    <p-floatlabel variant="on">
-                        <input pInputText type="text" id="perfil" formControlName="perfil">
-                        <label for="perfil">Perfil </label>
-                    </p-floatlabel>
-                </p-inputgroup>
-        
-                @if (perfil.invalid && (perfil.dirty || perfil.touched)) {
-                    @if (user.hasError("required","perfil")) {
-                        <div class="mensajes-error">
-                            <p-message severity="error" size="small">Este campo es obligatorio</p-message>
-                        </div>
-                    }
-                    
-                    
-                }
-                @if(isToEdit){
-                    <button size="small" routerLink="../admin" pButton type="submit">
-                        <i pButtonIcon class="pi pi-user-edit"></i>
-                        <span pButtonLabel>Editar</span>
-                    </button>
-                }@else {
-                    <button routerLink="../login" size="small" pButton type="submit">
-                        <i pButtonIcon class="pi pi-user-plus"></i>
-                        <span pButtonLabel>Crear</span>
-                    </button>
-                }
-                
-            </form>
-        </p-card>
+        </div>
     </div>
+    
 </section>

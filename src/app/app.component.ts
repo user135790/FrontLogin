@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { RouterOutlet, RouterLink, Router } from '@angular/router';
 import { LoginComponent } from "./login/login.component"
 import { FormUserComponent } from './form-user/form-user.component';
 import { CustomPrimengModule } from './custom-primeng/custom-primeng.module';
 import { ShowUsersComponent } from './show-users/show-users.component';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,9 @@ import { ShowUsersComponent } from './show-users/show-users.component';
 })
 export class AppComponent {
   title = 'FrontLogin';
-  session = sessionStorage.getItem("token")
+  session:string|null = "";
 
-  getSession(token:string){
-    this.session = sessionStorage.getItem("token")
+  constructor(private auth:AuthService, private route:Router){
+
   }
 }
