@@ -1,6 +1,21 @@
 # FrontLogin
-
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.3.
+
+Se realiza un modulo para la gestion de usuarios en Angular aplicando las siguientes herramientas y practicas:
+
+Formularios Reactivos de Angular
+Validacion de formularios
+Consumo de servicios REST a traves de peticiones HTTP con HttpClient y rxjs
+Animaciones en la pagina de login con GSAP y manipulacion de SVG
+Uso de Guard para proteccion de rutas y Route para hacer el enrutado entre paginas
+Uso de JWT para la autenticación
+Injeccion de servicios propios para la gestion de usuarios y la autenticación
+Uso de PrimeNG para la interfaz grafica
+
+
+![login](https://github.com/user-attachments/assets/cf48884b-3240-455e-b26e-3a7a9d5fb307)
+![loginResponsive](https://github.com/user-attachments/assets/5c966a62-281d-45e8-a46e-2c8349b29ec4)
+
 
 ## Development server
 
